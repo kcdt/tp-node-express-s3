@@ -22,8 +22,8 @@ pnpm-debug.log*
 npm-debug.log*
 
 # Migration
-src/migrations/
-!src/migrations/README.md
+packages/server/src/migrations/
+!packages/server/src/migrations/README.md
 
 # Build / Dist
 dist/
