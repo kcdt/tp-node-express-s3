@@ -22,7 +22,7 @@ pnpm-debug.log*
 npm-debug.log*
 
 # Migration
-packages/server/src/migrations
+/packages/server/src/migrations
 !packages/server/src/migrations/README.md
 
 # Build / Dist
@@ -52,3 +52,4 @@ coverage/
 *.log
 *.bak
 *.tmp
+/packages/server/src/migrations
