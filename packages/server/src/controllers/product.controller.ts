@@ -22,7 +22,6 @@ export const createProduct = async (request: Request, response: Response) => {
     }
 };
 
-
 export const getProducts = async (request: Request, response: Response) => {
     try {
         logger.info("[GET] /products - Récupérer tout les produits");
