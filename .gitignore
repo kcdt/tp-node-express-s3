@@ -1,0 +1,50 @@
+# Node.js
+node_modules/
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environnement
+.env
+.env.local
+.env.*.local
+
+# TypeScript
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+npm-debug.log*
+
+# Build / Dist
+dist/
+build/
+
+# IDE / OS spécifiques
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.vscode-test/
+*.swp
+*.swo
+
+# Test coverage
+coverage/
+
+# Linter
+.eslintcache
+
+# Git
+.git/
+*.orig
+
+# Miscellaneous
+*.log
+*.bak
+*.tmp
