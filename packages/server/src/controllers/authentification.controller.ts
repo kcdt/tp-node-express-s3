@@ -6,13 +6,14 @@ import { z } from "zod";
 import logger from "../utils/logger"
 import APIResponse from "../utils/response"
 import { env } from '../config/env';
-import { userValidation } from "../validation/users.validation";
 
 const { JWT_SECRET } = env;
 
 export const registerUser = async (request: Request, response: Response) => {
     try {
-        const { username, password, email } = userValidation.parse(request.body);
+        logger.info("[POST] /register - Créer un compte");
+
+        const { username, password, email } = request.body;
     
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
@@ -31,11 +32,9 @@ export const registerUser = async (request: Request, response: Response) => {
 
 export const loginUser = async (request: Request, response: Response) => {
     try {
-        const { email, password } = request.body;
+        logger.info("[POST] /login - S'authentifier");
 
-        if (!email || !password) {
-            return APIResponse(response, null, "Email et mot de passe sont requis", 400);
-        }
+        const { email, password } = request.body;
 
         const user = await getUserByEmail(email);
         if (!user) {
@@ -64,6 +63,8 @@ export const loginUser = async (request: Request, response: Response) => {
 };
 
 export const logoutUser = (request: Request, response: Response) => {
+    logger.info("[POST] /logout - Se déconnecter");
+
     response.clearCookie('accessToken');
     APIResponse(response, null, "Vous êtes déconnecté", 200);
 }

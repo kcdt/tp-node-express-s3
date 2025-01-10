@@ -64,6 +64,7 @@ export const addUser = (user: NewUser) => {
 
 export const updateUser = (user: Partial<User> & { id: string }) => {
     try {
+        logger.info("[UPDATE] /users - Modifier un utilisateur");
         return db.update(users).set(user).where(
             eq(users.id, user.id)
         ).execute();

@@ -43,3 +43,50 @@ export const addProduct = (product: NewProduct) => {
         throw new Error("Impossible de créer le produit")
     }
 };
+
+export const updateProductById = async (id: string, updatedProduct: Partial<NewProduct>) => {
+    try {
+        const existingProduct = await db.query.products.findFirst({
+            where: eq(products.id, id),
+            columns: { id: true },
+        });
+
+        if (!existingProduct) {
+            throw new Error("Produit non trouvé");
+        }
+
+        const result = await db.update(products)
+            .set(updatedProduct)
+            .where(eq(products.id, id))
+            .returning({ id: products.id })
+            .execute();
+
+        return result;
+    } catch (err: any) {
+        logger.error(`Erreur lors de la mise à jour du produit; ${err.message}`);
+        throw new Error("Impossible de mettre à jour le produit");
+    }
+};
+
+export const deleteProductById = async (id: string) => {
+    try {
+        const existingProduct = await db.query.products.findFirst({
+            where: eq(products.id, id),
+            columns: { id: true },
+        });
+
+        if (!existingProduct) {
+            throw new Error("Produit non trouvé");
+        }
+
+        const result = await db.delete(products)
+            .where(eq(products.id, id))
+            .returning({ id: products.id })
+            .execute();
+
+        return result;
+    } catch (err: any) {
+        logger.error(`Erreur lors de la suppression du produit; ${err.message}`);
+        throw new Error("Impossible de supprimer le produit");
+    }
+};

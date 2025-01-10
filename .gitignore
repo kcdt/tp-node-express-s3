@@ -52,4 +52,3 @@ coverage/
 *.log
 *.bak
 *.tmp
-/packages/server/src/migrations

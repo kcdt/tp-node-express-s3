@@ -16,6 +16,8 @@ export const getUsers = async (request: Request, response: Response) => {
 }
 
 export const getUser = async (request: Request, response: Response) => {
+    logger.info("[GET] /users - Récupérer un utilisateur par id");
+
     const { id } = request.params;
     const user = await getUserById(id);
 

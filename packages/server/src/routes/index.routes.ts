@@ -11,7 +11,7 @@ const router = Router();
 router.use('/users', userRoutes);
 
 // http://localhost:3000/auth
-router.use('/auth', authRoutes);
+router.use('/', authRoutes);
 
 // http://localhost:3000/product
 router.use('/product', productRoutes);
